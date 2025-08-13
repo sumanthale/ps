@@ -885,7 +885,6 @@ html {
   transform: translateZ(-2px) scale(3);
 }
 
-}
 @keyframes floatParticle {
   0%,
   100% {
