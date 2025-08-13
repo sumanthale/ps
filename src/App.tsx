@@ -6,6 +6,7 @@ import MemoryPuzzle from './components/MemoryPuzzle';
 import VoiceNote from './components/VoiceNote';
 import ScratchCards from './components/ScratchCards';
 import BucketList from './components/BucketList';
+import SongDedication from './components/SongDedication';
 import SpinWheel from './components/SpinWheel';
 import TripCountdown from './components/TripCountdown';
 import FinalMessage from './components/FinalMessage';
@@ -20,6 +21,7 @@ const sections = [
   'voice',
   'scratch',
   'bucketlist',
+  'songs',
   'spin',
   'countdown',
   'final'
@@ -67,7 +69,9 @@ function App() {
       case 'scratch':
         return <ScratchCards onNext={() => setCurrentSection('bucketlist')} />;
       case 'bucketlist':
-        return <BucketList onNext={() => setCurrentSection('spin')} />;
+        return <BucketList onNext={() => setCurrentSection('songs')} />;
+      case 'songs':
+        return <SongDedication onNext={() => setCurrentSection('spin')} />;
       case 'spin':
         return <SpinWheel onNext={() => setCurrentSection('countdown')} />;
       case 'countdown':
