@@ -84,66 +84,45 @@ function App() {
   };
 
   return (
-    <div className={`min-h-screen transition-all duration-700 ${
+    <div className={`min-h-screen transition-all duration-500 ${
       isDark 
-        ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900'
-        : 'gradient-kawaii animate-gradient-shift'
+        ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' 
+        : 'gradient-romantic animate-gradient-shift'
     }`}>
       {/* Background Pattern */}
-      <div className="fixed inset-0 opacity-15 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 gradient-magical animate-gradient-shift"></div>
+      <div className="fixed inset-0 opacity-10 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-pink-100 to-purple-100 animate-gradient-shift"></div>
         {/* Floating particles */}
-        {[...Array(25)].map((_, i) => (
+        {[...Array(30)].map((_, i) => (
           <div
             key={i}
-            className={`absolute rounded-full animate-parallax-float ${
-              i % 4 === 0 ? 'bg-pink-300' : 
-              i % 4 === 1 ? 'bg-blue-300' : 
-              i % 4 === 2 ? 'bg-purple-300' : 'bg-yellow-300'
+            className={`absolute rounded-full animate-float ${
+              i % 3 === 0 ? 'bg-pink-300' : i % 3 === 1 ? 'bg-blue-300' : 'bg-purple-300'
             }`}
             style={{
-              width: Math.random() * 6 + 3 + 'px',
-              height: Math.random() * 6 + 3 + 'px',
+              width: Math.random() * 8 + 4 + 'px',
+              height: Math.random() * 8 + 4 + 'px',
               left: Math.random() * 100 + '%',
               top: Math.random() * 100 + '%',
-              animationDelay: Math.random() * 8 + 's',
-              animationDuration: (Math.random() * 4 + 6) + 's'
+              animationDelay: Math.random() * 5 + 's',
+              animationDuration: (Math.random() * 3 + 4) + 's'
             }}
           />
         ))}
         
         {/* Sparkle effects */}
-        {[...Array(20)].map((_, i) => (
+        {[...Array(15)].map((_, i) => (
           <div
             key={`sparkle-${i}`}
-            className="absolute animate-sparkle"
+            className="absolute text-yellow-300 animate-sparkle"
             style={{
               left: Math.random() * 100 + '%',
               top: Math.random() * 100 + '%',
-              animationDelay: Math.random() * 6 + 's',
-              fontSize: Math.random() * 6 + 10 + 'px',
-              color: i % 3 === 0 ? '#ffd700' : i % 3 === 1 ? '#ff69b4' : '#87ceeb'
+              animationDelay: Math.random() * 4 + 's',
+              fontSize: Math.random() * 8 + 8 + 'px'
             }}
           >
-            {i % 4 === 0 ? '✨' : i % 4 === 1 ? '💫' : i % 4 === 2 ? '⭐' : '🌟'}
-          </div>
-        ))}
-        
-        {/* Floating hearts with better animation */}
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={`heart-${i}`}
-            className="absolute text-pink-300 animate-float-smooth"
-            style={{
-              left: Math.random() * 100 + '%',
-              top: Math.random() * 100 + '%',
-              animationDelay: Math.random() * 5 + 's',
-              animationDuration: (Math.random() * 3 + 5) + 's',
-              fontSize: Math.random() * 8 + 12 + 'px',
-              opacity: 0.6
-            }}
-          >
-            💖
+            ✨
           </div>
         ))}
       </div>
@@ -156,8 +135,8 @@ function App() {
      }
       
       {/* Main Content */}
-      <div className={`relative z-10 transition-all duration-1200 ${
-        isLoaded ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
+      <div className={`relative z-10 transition-all duration-1000 ${
+        isLoaded ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
       }`}>
         {renderCurrentSection()}
       </div>
@@ -173,14 +152,14 @@ function App() {
 
       {/* Easter Egg Modal */}
       {showEasterEgg && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex items-center justify-center z-50 p-4">
-          <div className="card-kawaii rounded-3xl p-8 max-w-sm w-full text-center animate-magical-appear shadow-dreamy sparkle-container">
-            <div className="text-7xl mb-6 animate-gentle-bounce">🎉</div>
-            <h3 className="text-2xl font-bold text-gray-800 mb-3 text-glow-pink font-kalam">You found the secret!</h3>
-            <p className="text-gray-600 mb-6 font-sacramento text-xl">Bonus hug unlocked when you're back! 🤗</p>
+        <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="card-romantic rounded-3xl p-8 max-w-sm w-full text-center animate-bounce-in shadow-dreamy">
+            <div className="text-7xl mb-6 animate-heart-beat">🎉</div>
+            <h3 className="text-2xl font-bold text-gray-800 mb-3 text-glow-pink">You found the secret!</h3>
+            <p className="text-gray-600 mb-6 font-dancing text-lg">Bonus hug unlocked when you're back! 🤗</p>
             <button 
               onClick={() => setShowEasterEgg(false)}
-              className="btn-kawaii text-white px-8 py-3 rounded-full font-semibold text-lg focus-romantic interactive touch-friendly"
+              className="btn-romantic text-white px-8 py-3 rounded-full font-semibold text-lg focus-romantic"
             >
               Aww, thanks! 💙
             </button>

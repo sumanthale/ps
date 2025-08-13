@@ -66,48 +66,48 @@ const LoveMeter: React.FC<LoveMeterProps> = ({ onNext }) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center relative overflow-hidden mobile-padding">
+    <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
       {/* Header */}
-      <div className="mb-10 z-10 animate-slide-in-up mobile-spacing">
-        <h2 className="text-4xl font-bold text-gray-800 mb-3 text-glow-blue font-kalam text-kawaii">
+      <div className="mb-10 z-10">
+        <h2 className="text-4xl font-bold text-gray-800 mb-3 text-glow-blue">
           Doraemon's Love Scanner
         </h2>
-        <p className="text-gray-600 font-sacramento text-xl text-glow-soft">
+        <p className="text-gray-600 font-dancing text-lg">
           Advanced cuteness detection system ✨
         </p>
       </div>
 
       {/* Scanner Device */}
-      <div className="relative mb-10 z-10 animate-slide-in-up animate-delay-200">
-        <div className="w-72 h-72 gradient-doraemon rounded-3xl p-6 shadow-dreamy animate-love-pulse sparkle-container">
+      <div className="relative mb-10 z-10">
+        <div className="w-72 h-72 gradient-doraemon rounded-3xl p-6 shadow-dreamy animate-pulse-glow">
           {/* Screen */}
-          <div className="w-full h-44 bg-black rounded-2xl p-0 relative overflow-hidden shadow-soft border-2 border-blue-200">
+          <div className="w-full h-44 bg-black rounded-2xl p-0 relative overflow-hidden shadow-inner">
             {/* Camera Feed */}
             <video
               ref={videoRef}
-              className="w-full h-full object-cover rounded-xl"
+              className="w-full h-full object-cover"
               playsInline
               muted
             />
 
             {/* Black overlay for better text contrast */}
             {(isScanning || showResult) && (
-              <div className="absolute inset-0 bg-black bg-opacity-50 z-0 rounded-xl" />
+              <div className="absolute inset-0 bg-black bg-opacity-40 z-0" />
             )}
 
             {/* Scan overlay */}
             {isScanning && (
               <>
                 <div
-                  className="absolute left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-pink-400 animate-love-pulse shadow-glow z-10"
+                  className="absolute left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-pink-400 animate-pulse shadow-glow z-10"
                   style={{ top: `${(scanProgress / 100) * 100}%` }}
                 />
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-green-400 font-comfortaa text-sm z-10">
-                  <div className="mb-3 animate-wiggle">SCANNING... 🔍</div>
-                  <div className="text-3xl font-bold text-glow-blue animate-love-pulse">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-green-400 font-mono text-sm z-10">
+                  <div className="mb-3 animate-pulse">SCANNING... 🔍</div>
+                  <div className="text-3xl font-bold text-glow-blue">
                     {scanProgress}%
                   </div>
-                  <div className="mt-3 text-xs text-center px-2 font-kalam">
+                  <div className="mt-3 text-xs text-center px-2">
                     {scanProgress < 30 && "Detecting smile frequency..."}
                     {scanProgress >= 30 &&
                       scanProgress < 60 &&
@@ -122,13 +122,13 @@ const LoveMeter: React.FC<LoveMeterProps> = ({ onNext }) => {
             )}
 
             {showResult && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center h-full text-pink-400 animate-magical-appear z-10">
+              <div className="absolute inset-0 flex flex-col items-center justify-center h-full text-pink-400 animate-fade-in-up z-10">
                 <Heart className="w-16 h-16 mb-3 animate-heart-beat text-glow-pink" />
-                <div className="font-comfortaa text-2xl font-bold animate-love-pulse">100%</div>
-                <div className="text-sm mt-2 font-bold animate-wiggle font-kalam">
+                <div className="font-mono text-2xl font-bold">100%</div>
+                <div className="text-sm mt-2 font-bold animate-pulse">
                   CUTENESS OVERLOAD 💕
                 </div>
-                <div className="text-xs mt-3 text-center px-2 font-comfortaa">
+                <div className="text-xs mt-3 text-center px-2">
                   ERROR: Too adorable for standard measurement
                 </div>
               </div>
@@ -136,18 +136,18 @@ const LoveMeter: React.FC<LoveMeterProps> = ({ onNext }) => {
 
             {/* Ready Text */}
             {!isScanning && !showResult && cameraReady && (
-              <div className="absolute inset-0 flex items-center justify-center text-green-400 font-comfortaa text-base animate-love-pulse z-10">
+              <div className="absolute inset-0 flex items-center justify-center text-green-400 font-mono text-base animate-pulse z-10">
                 READY TO SCAN ⚡
               </div>
             )}
           </div>
 
           {/* Controls */}
-          <div className="mt-6 flex justify-center animate-slide-in-up animate-delay-300">
+          <div className="mt-6 flex justify-center">
             <button
               onClick={startScan}
               disabled={isScanning || !cameraReady}
-              className="btn-romantic text-white font-bold py-3 px-8 rounded-full flex items-center space-x-3 interactive touch-friendly disabled:opacity-50 disabled:cursor-not-allowed focus-romantic font-comfortaa"
+              className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 disabled:from-gray-400 disabled:to-gray-500 text-white font-bold py-3 px-8 rounded-full flex items-center space-x-3 transition-all transform hover:scale-105 disabled:scale-100 shadow-romantic focus-romantic"
             >
               <Zap className="w-5 h-5" />
               <span>{isScanning ? "Scanning..." : "Scan"}</span>
@@ -158,14 +158,14 @@ const LoveMeter: React.FC<LoveMeterProps> = ({ onNext }) => {
 
       {/* Results */}
       {showResult && (
-        <div className="animate-magical-appear z-10 px-4 mobile-padding">
+        <div className="animate-fade-in-up z-10 px-4">
           {/* Results Card */}
-          <div className="card-kawaii rounded-3xl p-6 shadow-dreamy mb-6 max-w-xs mx-auto text-center sparkle-container">
-            <h3 className="text-2xl font-bold text-pink-500 mb-3 animate-love-pulse font-kalam text-kawaii">
+          <div className="card-romantic rounded-2xl p-6 shadow-dreamy mb-6 max-w-xs mx-auto text-center bg-white/80 backdrop-blur-md">
+            <h3 className="text-2xl font-bold text-pink-500 mb-3 animate-pulse">
               💖 Scan Results 💖
             </h3>
 
-            <div className="space-y-3 text-left text-sm font-comfortaa">
+            <div className="space-y-3 text-left text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-600 font-medium">Smile:</span>
                 <span className="text-pink-500 font-bold">Perfect ✨</span>
@@ -183,8 +183,8 @@ const LoveMeter: React.FC<LoveMeterProps> = ({ onNext }) => {
             </div>
 
             {/* Sweet Compliment */}
-            <div className="mt-4 p-4 gradient-dreamy-soft rounded-2xl shadow-soft border border-pink-200">
-              <p className="text-base font-sacramento text-pink-700 font-bold leading-snug text-xl">
+            <div className="mt-4 p-3 bg-gradient-to-r from-pink-100 to-pink-200 rounded-lg shadow-inner">
+              <p className="text-base font-dancing text-pink-700 font-bold leading-snug">
                 You're not just cute... you're the most beautiful soul in the
                 entire universe 💙✨ inside and out.
               </p>
@@ -193,7 +193,11 @@ const LoveMeter: React.FC<LoveMeterProps> = ({ onNext }) => {
 
           <button
             onClick={onNext}
-            className="btn-dreamy text-white font-bold py-4 px-10 rounded-full shadow-dreamy interactive touch-friendly focus-dreamy animate-slide-in-up animate-delay-500 font-comfortaa"
+            className="
+            bg-gradient-to-r from-pink-400 to-blue-400 hover:from-pink-500 hover:to-blue-500
+            text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all transform hover:scale-105
+            focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-opacity-50
+            animate-fade-in-delayed"
           >
             What's Next? ✨
           </button>
@@ -201,15 +205,15 @@ const LoveMeter: React.FC<LoveMeterProps> = ({ onNext }) => {
       )}
 
       {cameraDenied && (
-        <div className="text-center space-y-4 mt-6 animate-slide-in-up mobile-padding">
-          <p className="text-gray-600 leading-relaxed text-sm font-comfortaa">
+        <div className="text-center space-y-4 mt-6">
+          <p className="text-gray-600 leading-relaxed text-xs">
             📸 No camera? No problem! But if you can, show your lovely face so
             Doraemon can scan all your cuteness 💕
           </p>
 
           <button
             onClick={onNext}
-            className="btn-kawaii text-white font-bold py-3 px-8 rounded-full shadow-kawaii interactive touch-friendly font-comfortaa"
+            className="bg-gradient-to-r from-pink-500 to-blue-500 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:scale-105 transition"
           >
             Skip Scan ➡️
           </button>

@@ -23,23 +23,23 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center relative overflow-hidden mobile-padding">
+    <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
       {/* Animated Gradient Background */}
-      <div className="absolute inset-0 gradient-kawaii animate-gradient-shift"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-pink-100 to-purple-100 animate-gradient-shift"></div>
 
       {/* Floating Glow Particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(15)].map((_, i) => (
+        {[...Array(20)].map((_, i) => (
           <div
             key={i}
-            className="absolute bg-white rounded-full opacity-25 blur-sm"
+            className="absolute bg-white rounded-full opacity-20 blur-md"
             style={{
-              width: Math.random() * 4 + 3 + "px",
-              height: Math.random() * 4 + 3 + "px",
+              width: Math.random() * 6 + 4 + "px",
+              height: Math.random() * 6 + 4 + "px",
               left: Math.random() * 100 + "%",
               top: Math.random() * 100 + "%",
-              animation: `parallax-float ${
-                Math.random() * 4 + 6
+              animation: `floatParticle ${
+                Math.random() * 6 + 8
               }s ease-in-out infinite`,
               animationDelay: Math.random() * 5 + "s",
             }}
@@ -49,44 +49,44 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
 
       {/* Floating Hearts (Parallax Layer) */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(8)].map((_, i) => (
+        {[...Array(10)].map((_, i) => (
           <Heart
             key={i}
-            className="absolute text-pink-300 opacity-40 animate-float-smooth"
+            className="absolute text-pink-300 opacity-30 animate-float-smooth"
             style={{
-              width: Math.random() * 20 + 12 + "px",
-              height: Math.random() * 20 + 12 + "px",
+              width: Math.random() * 25 + 15 + "px",
+              height: Math.random() * 25 + 15 + "px",
               left: Math.random() * 100 + "%",
               top: Math.random() * 100 + "%",
               animationDelay: Math.random() * 4 + "s",
-              animationDuration: Math.random() * 3 + 5 + "s",
+              animationDuration: Math.random() * 5 + 6 + "s",
             }}
           />
         ))}
       </div>
 
       {/* Doraemon Pocket */}
-      <div className="relative mb-14 z-10 animate-gentle-bounce sparkle-container">
+      <div className="relative mb-14 z-10 animate-bounce-slow">
         <img
           src="https://res.cloudinary.com/dcnl1eovc/image/upload/v1755027039/pngwing.com_snothx.png"
           alt="Doraemon Pocket"
-          className="w-32 h-32 object-contain drop-shadow-xl"
+          className="w-36 h-w-36 object-contain drop-shadow-lg"
         />
-        <Heart className="absolute -top-4 -right-4 w-6 h-6 text-pink-400 animate-love-pulse" />
-        <Heart className="absolute -bottom-4 -left-4 w-5 h-5 text-pink-300 animate-love-pulse animate-delay-500" />
+        <Heart className="absolute -top-5 -right-5 w-8 h-8 text-pink-400 animate-pulse-float" />
+        <Heart className="absolute -bottom-5 -left-5 w-6 h-6 text-pink-300 animate-pulse-float-delayed" />
       </div>
 
       {/* Animated Text */}
-      <div className="h-28 flex items-center justify-center z-10 mobile-spacing">
+      <div className="h-24 flex items-center justify-center z-10">
         <h1
           key={currentText}
-          className="text-3xl sm:text-4xl font-bold text-gray-800 animate-slide-in-up px-6 leading-snug max-w-lg text-kawaii"
+          className="text-3xl sm:text-4xl font-bold text-gray-800 animate-fade-slide px-6 leading-snug max-w-lg"
           style={{
-            fontFamily: currentText < 2 ? "Comfortaa" : "Sacramento",
+            fontFamily: currentText < 2 ? "Nunito" : "Dancing Script",
             textShadow:
               currentText < 2
-                ? "0 3px 15px rgba(168, 223, 255, 0.3)"
-                : "0 3px 15px rgba(255, 182, 193, 0.3)",
+                ? "0 2px 10px rgba(168, 223, 255, 0.4)"
+                : "0 2px 10px rgba(255, 182, 193, 0.4)",
           }}
         >
           {texts[currentText]}
@@ -94,14 +94,14 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
       </div>
 
       {/* Progress Dots */}
-      <div className="mt-8 flex space-x-4 z-10 mobile-spacing">
+      <div className="mt-8 flex space-x-3 z-10">
         {texts.map((_, index) => (
           <div
             key={index}
-            className={`h-3 rounded-full transition-all duration-700 ${
+            className={`h-3 rounded-full transition-all duration-500 ${
               index === currentText
-                ? "bg-pink-400 w-12 shadow-kawaii animate-love-pulse"
-                : "bg-gray-300 opacity-40 w-3"
+                ? "bg-pink-400 w-10 shadow-glow"
+                : "bg-gray-300 opacity-50 w-3"
             }`}
           />
         ))}
@@ -110,15 +110,17 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
       {/* Continue Button */}
       <button
         onClick={onComplete}
-        className="mt-12 text-lg sm:text-xl font-semibold text-white btn-romantic
-             px-10 py-4 rounded-full shadow-romantic
-             interactive touch-friendly animate-slide-in-up animate-delay-1000 font-comfortaa"
+        className="mt-12 text-lg sm:text-xl font-semibold text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 
+             px-8 py-3 rounded-full shadow-lg shadow-pink-300/50 
+             transition-all duration-300 ease-out transform hover:scale-110 hover:shadow-pink-400/70 
+             hover:brightness-110 animate-fade-in-delayed"
         style={{
           textShadow: "0 2px 6px rgba(0,0,0,0.2)",
         }}
       >
         ✨ Tap to Continue ✨
       </button>
+      {/* Animations */}
     </div>
   );
 };
