@@ -9,12 +9,13 @@ interface NavigationProps {
 
 const sections = [
   'splash',
-  'lovemeter',
+  'lovemeter', 
   'adventure',
   'puzzle',
   'voice',
   'scratch',
   'bucketlist',
+  'songs',
   'spin',
   'countdown',
   'final'
