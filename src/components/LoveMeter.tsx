@@ -185,8 +185,8 @@ const LoveMeter: React.FC<LoveMeterProps> = ({ onNext }) => {
             {/* Sweet Compliment */}
             <div className="mt-4 p-3 bg-gradient-to-r from-pink-100 to-pink-200 rounded-lg shadow-inner">
               <p className="text-base font-dancing text-pink-700 font-bold leading-snug">
-                You're not just cute... you're **the most beautiful person in
-                the whole universe** 💙✨
+                You're not just cute... you're the most beautiful soul in the
+                entire universe 💙✨ inside and out.
               </p>
             </div>
           </div>

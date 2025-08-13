@@ -527,3 +527,27 @@
   background-size: 200% 200%;
   animation: gradientShift 12s ease infinite;
 }
+
+
+@keyframes flash-hide {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0.8;
+  }
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.animate-flash-hide {
+  animation: flash-hide 1.2s ease-in-out forwards;
+}

@@ -29,7 +29,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate, isD
 
   const goBack = () => canGoBack && onNavigate(sections[currentIndex - 1]);
   const goForward = () => canGoForward && onNavigate(sections[currentIndex + 1]);
-  const goHome = () => onNavigate('lovemeter');
+  const goHome = () => onNavigate('splash');
 
   return (
     <>
@@ -45,9 +45,9 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate, isD
 
       {/* Navigation Bar */}
       {isOpen && (
-        <div className="fixed bottom-16 left-1/2 -translate-x-1/2 z-30 w-full max-w-sm px-4">
+        <div className="fixed bottom-16 left-1/2 -translate-x-1/2 z-30 w-full max-w-sm px-2">
           <div
-            className={`flex items-center justify-between px-4 py-2 rounded-full shadow-md backdrop-blur-md transition-all duration-300 ${
+            className={`flex items-center justify-between px-2 py-2 rounded-full shadow-md backdrop-blur-md transition-all duration-300 ${
               isDark ? 'bg-gray-800/90 border border-gray-600' : 'bg-white/40 border border-white/30'
             }`}
           >
@@ -65,7 +65,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate, isD
             </button>
 
             {/* Sections spread evenly */}
-            <div className="flex flex-1 justify-center space-x-3 mx-3">
+            <div className="flex flex-1 justify-center space-x-3">
               {sections.slice(1).map((section) => (
                 <button
                   key={section}

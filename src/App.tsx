@@ -51,9 +51,6 @@ function App() {
     setCurrentSection(section);
   };
 
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-  };
 
   const renderCurrentSection = () => {
     switch (currentSection) {
