@@ -115,7 +115,7 @@ const messageParts = [
               <p className="text-base text-gray-500 mb-2 font-dancing">
                 With warmth,
               </p>
-              <p className="text-xl font-bold text-blue-600 font-pacifico">Sumanth Ale</p>
+              <p className="text-xl font-bold text-blue-600 font-pacifico">Sumanth</p>
             </motion.div>
           )}
         </div>

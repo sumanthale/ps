@@ -31,36 +31,42 @@ const MemoryPuzzle: React.FC<MemoryPuzzleProps> = ({ onNext }) => {
     return () => clearInterval(timer);
   }, [timeLeft, isComplete]);
 
+  const EMPTY_TILE = 8; // consistently use 8 as the empty tile
+
+  // Check if puzzle is solvable (for odd grid size)
+  const isSolvable = (tiles: number[]) => {
+    const inversionCount = tiles
+      .filter((n) => n !== EMPTY_TILE)
+      .reduce((count, current, idx, arr) => {
+        return (
+          count +
+          arr.slice(idx + 1).filter((n) => n < current && n !== EMPTY_TILE)
+            .length
+        );
+      }, 0);
+    // For odd grid (3x3), solvable if inversion count is even
+    return inversionCount % 2 === 0;
+  };
+
   const shufflePuzzle = () => {
-    const arr = Array.from({ length: 9 }, (_, i) => i); // [0,1,2,...8] (0 is empty tile)
-
-    // Simple function to swap two positions
-    const swap = (i, j) => {
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    };
-
-    // Simulate a few random legal moves
-    const moveTile = () => {
-      const emptyIndex = arr.indexOf(0);
-      const row = Math.floor(emptyIndex / 3);
-      const col = emptyIndex % 3;
-
-      // Find possible moves (up, down, left, right)
-      const moves = [];
-      if (row > 0) moves.push(emptyIndex - 3);
-      if (row < 2) moves.push(emptyIndex + 3);
-      if (col > 0) moves.push(emptyIndex - 1);
-      if (col < 2) moves.push(emptyIndex + 1);
-
-      // Pick a random move and swap with empty
-      const move = moves[Math.floor(Math.random() * moves.length)];
-      swap(emptyIndex, move);
-    };
-
-    // Do 10–20 random legal moves for an easy puzzle
-    for (let i = 0; i < 15; i++) {
-      moveTile();
-    }
+    let arr;
+    do {
+      arr = Array.from({ length: 9 }, (_, i) => i);
+      // Do random legal moves from solved state to keep solvability
+      const swap = (i, j) => ([arr[i], arr[j]] = [arr[j], arr[i]]);
+      const moveTile = () => {
+        const emptyIndex = arr.indexOf(EMPTY_TILE);
+        const row = Math.floor(emptyIndex / 3);
+        const col = emptyIndex % 3;
+        const moves = [];
+        if (row > 0) moves.push(emptyIndex - 3);
+        if (row < 2) moves.push(emptyIndex + 3);
+        if (col > 0) moves.push(emptyIndex - 1);
+        if (col < 2) moves.push(emptyIndex + 1);
+        swap(emptyIndex, moves[Math.floor(Math.random() * moves.length)]);
+      };
+      for (let i = 0; i < 20; i++) moveTile();
+    } while (!isSolvable(arr) || arr.every((v, i) => v === i)); // avoid solved state
 
     setPieces(arr);
     setIsComplete(false);
@@ -70,9 +76,11 @@ const MemoryPuzzle: React.FC<MemoryPuzzleProps> = ({ onNext }) => {
   };
 
   const movePiece = (index: number) => {
-    const emptyIndex = pieces.indexOf(8);
+    const emptyIndex = pieces.indexOf(EMPTY_TILE);
     const canMove =
-      Math.abs(index - emptyIndex) === 1 || Math.abs(index - emptyIndex) === 3;
+      (Math.abs(index - emptyIndex) === 1 &&
+        Math.floor(index / 3) === Math.floor(emptyIndex / 3)) ||
+      Math.abs(index - emptyIndex) === 3;
 
     if (canMove) {
       const newPieces = [...pieces];
@@ -81,10 +89,7 @@ const MemoryPuzzle: React.FC<MemoryPuzzleProps> = ({ onNext }) => {
         newPieces[index],
       ];
       setPieces(newPieces);
-
-      // Check completion
-      const complete = newPieces.every((piece, idx) => piece === idx);
-      if (complete) handleComplete();
+      if (newPieces.every((piece, idx) => piece === idx)) handleComplete();
     }
   };
 

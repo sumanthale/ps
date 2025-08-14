@@ -37,6 +37,7 @@ const BucketList: React.FC<BucketListProps> = ({ onNext }) => {
 
   // Save selections to localStorage
   useEffect(() => {
+    if(clickedItems.length === 0) return;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(clickedItems));
   }, [clickedItems]);
 

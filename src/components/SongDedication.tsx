@@ -172,29 +172,37 @@ const SongDedication: React.FC<SongDedicationProps> = ({ onNext }) => {
 
       {/* Songs */}
       <div className="px-4 pb-8 space-y-6 max-w-sm mx-auto">
-        {songs.map((song, index) => (
-          <motion.div
+        {songs.map((song) => (
+          <div
+            onClick={() => togglePlay(song.id)}
             key={song.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.15 }}
-            className={`relative bg-gradient-to-r ${song.color} rounded-3xl p-5 shadow-2xl border border-white/40 overflow-hidden`}
-            style={{
-              backgroundImage:
-                "linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4))",
-              backdropFilter: "blur(8px)",
-            }}
+            className="relative bg-black rounded-xl shadow-lg overflow-hidden"
           >
-            {/* Cassette Body */}
-            <div className="bg-gradient-to-b from-gray-50 to-gray-200 rounded-xl p-4 shadow-inner relative border border-gray-300">
-              {/* Cassette Top Label */}
-              <div className="bg-white/90 backdrop-blur-sm rounded-md px-3 py-1 text-xs italic text-gray-700 font-dancing mb-4 text-center shadow-sm border border-pink-200">
-                {song.message}
+            {/* Cassette body */}
+            <div className="bg-gradient-to-b from-orange-500 to-orange-600 border-t-4 border-b-4 border-orange-700 rounded-lg p-4 relative">
+              {/* Screws */}
+              {[
+                "top-2 left-2",
+                "top-2 right-2",
+                "bottom-2 left-2",
+                "bottom-2 right-2",
+              ].map((pos, i) => (
+                <div
+                  key={i}
+                  className={`absolute ${pos} w-3 h-3 rounded-full bg-gray-300 border border-gray-500`}
+                />
+              ))}
+
+              {/* Label */}
+              <div className="bg-[#fff9e6] rounded-t-md px-3 py-1 border-b border-gray-300 text-center">
+                <p className="text-xs italic font-dancing text-gray-700 truncate">
+                  {song.message}
+                </p>
               </div>
 
-              {/* Cassette Window */}
-              <div className="flex items-center justify-between relative bg-gray-100 rounded-lg px-6 py-3 border border-gray-300 shadow-inner">
-                {/* Left Reel */}
+              {/* Window with reels */}
+              <div className="bg-black/90 rounded-lg px-4 py-2 flex items-center justify-between mt-2 shadow-inner relative">
+                {/* Left reel */}
                 <motion.div
                   animate={
                     currentPlaying === song.id ? { rotate: 360 } : { rotate: 0 }
@@ -211,10 +219,20 @@ const SongDedication: React.FC<SongDedicationProps> = ({ onNext }) => {
                   </div>
                 </motion.div>
 
-                {/* Tape Strip */}
-                <div className="absolute top-1/2 left-[72px] right-[72px] h-1 bg-gray-700" />
+                {/* Tape track name */}
+                <div className="flex flex-col items-center justify-center flex-1">
+                  <div className="text-[0.65rem] text-gray-300 font-mono uppercase tracking-wider px-2 text-center">
+                    {song.title || "Untitled"}
+                  </div>
+                  <span className="text-[0.6rem] text-gray-400 italic mt-1 text-center">
+                    (click to  
+                    
+                    {currentPlaying === song.id ? " pause" : " play"}
+                    )
+                  </span>
+                </div>
 
-                {/* Right Reel */}
+                {/* Right reel */}
                 <motion.div
                   animate={
                     currentPlaying === song.id
@@ -234,37 +252,38 @@ const SongDedication: React.FC<SongDedicationProps> = ({ onNext }) => {
                 </motion.div>
               </div>
 
-              {/* Play/Pause */}
-              <motion.button
-                onClick={() => togglePlay(song.id)}
-                className={`mt-4 w-full rounded-lg flex items-center justify-center shadow-lg border-2 border-pink-400 py-3 text-lg font-semibold transition-all ${
-                  currentPlaying === song.id
-                    ? "bg-pink-500 text-white"
-                    : "bg-white text-pink-500"
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {currentPlaying === song.id ? "Pause" : "Play"}
-              </motion.button>
+              {/* Now playing indicator */}
+                <div className="flex flex-col items-center justify-center mt-2 min-h-[24px]">
+                {currentPlaying === song.id ? (
+                  <div className="text-xs text-white font-semibold flex items-center gap-1">
+                  <span role="img" aria-label="playing">🔊</span>
+                  <span>Now Playing...</span>
+                  </div>
+                ) : (
+                  allSongsPlayed.includes(song.id) && (
+                  <div className="flex items-center justify-center">
+                    <div className="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 shadow-sm border border-pink-200">
+                    <Heart className="w-3 h-3 fill-current" />
+                    <span>Played with love</span>
+                    </div>
+                  </div>
+                  )
+                )}
+                </div>
 
-              {/* Song Info */}
-              <div className="mt-4 text-center">
-                <h3 className="font-bold text-gray-800 text-lg">
-                  {song.title}
-                </h3>
-                <p className="text-gray-500 text-sm">{song.artist}</p>
-              </div>
+              {/* Played with love badge */}
             </div>
 
-            {/* Audio */}
+            {/* Floating Play/Pause button */}
+
+            {/* Hidden audio */}
             <audio
               ref={(el) => (audioRefs.current[song.id] = el)}
               src={song.audioSrc}
               onTimeUpdate={() => handleTimeUpdate(song.id)}
               onEnded={() => setCurrentPlaying(null)}
             />
-          </motion.div>
+          </div>
         ))}
       </div>
 
