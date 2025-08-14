@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Play, Pause, Volume2, Heart, Sparkles } from "lucide-react";
-import VoiceNoteFile from "../assets/mine.mp3";
+// import VoiceNoteFile from "../assets/mine.mp3";
 
 interface VoiceNoteProps {
   onNext: () => void;
@@ -13,7 +13,7 @@ const VoiceNote: React.FC<VoiceNoteProps> = ({ onNext }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    audioRef.current = new Audio(VoiceNoteFile);
+    audioRef.current = new Audio("https://res.cloudinary.com/dcnl1eovc/video/upload/v1755153187/mine_uw7gyw.mp3");
 
     audioRef.current.addEventListener("loadedmetadata", () => {
       setDuration(audioRef.current?.duration || 0);

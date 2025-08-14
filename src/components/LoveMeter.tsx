@@ -70,7 +70,7 @@ const LoveMeter: React.FC<LoveMeterProps> = ({ onNext }) => {
       {/* Header */}
       <div className="mb-10 z-10">
         <h2 className="text-4xl font-bold text-gray-800 mb-3 text-glow-blue">
-          Doraemon's Love Scanner
+          Doraemon's Cuteness Scanner
         </h2>
         <p className="text-gray-600 font-dancing text-lg">
           Advanced cuteness detection system ✨

@@ -1,21 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Play, Pause, Heart } from "lucide-react";
+import { Heart } from "lucide-react";
 import { motion } from "framer-motion";
-import PerfectSong from "../assets/perfect.mp3";
-import BeautifulSong from "../assets/beautiful.mp3";
-import ChirunamaSong from "../assets/chirunama.mp3";
-import ChoosiSong from "../assets/choosi.mp3";
-import JabilliSong from "../assets/jabilli.mp3";
-import NaakosamSong from "../assets/naakosam.mp3";
-import NeeveSong from "../assets/neeve.mp3";
-import NinnuchudaganeSong from "../assets/ninnuchudagane.mp3";
-
-// choosi.mp3,Choosi Chudangane by Anurag Kulakarni
-
-//   jabilli.mp3, Jabilli Kosam by S. P. Balasubrahmanyam
-//  naakosam.mp3, Naa Kosam by Sid Sriram
-//  neeve.mp3, Neeve Neeve by G. V. Prakash Kuma
-//  ninnuchudagane.mp3 , Ninnu chudagane by DSP
 
 interface SongDedicationProps {
   onNext: () => void;
@@ -44,7 +29,8 @@ const SongDedication: React.FC<SongDedicationProps> = ({ onNext }) => {
         "When I listen to this, I imagine us dancing under the stars, lost in our own world 💖",
       title: "Perfect",
       artist: "Ed Sheeran",
-      audioSrc: PerfectSong,
+      audioSrc:
+        "https://res.cloudinary.com/dcnl1eovc/video/upload/v1755153190/perfect_fbbzyy.mp3",
       color: "from-pink-100 to-rose-200",
       emoji: "💕",
     },
@@ -54,7 +40,8 @@ const SongDedication: React.FC<SongDedicationProps> = ({ onNext }) => {
         "No matter where life takes us, I want you in every tomorrow 🕰️❤️",
       title: "Chirunama Thana Chirunama",
       artist: "Yazin Nizar",
-      audioSrc: ChirunamaSong,
+      audioSrc:
+        "https://res.cloudinary.com/dcnl1eovc/video/upload/v1755153187/chirunama_pdvldu.mp3",
       color: "from-blue-100 to-indigo-200",
       emoji: "⏰",
     },
@@ -63,7 +50,8 @@ const SongDedication: React.FC<SongDedicationProps> = ({ onNext }) => {
       message: "You are the tune my heart hums, even in silence 🎶",
       title: "Choosi Chudangane",
       artist: "Anurag Kulakarni",
-      audioSrc: ChoosiSong,
+      audioSrc:
+        "https://res.cloudinary.com/dcnl1eovc/video/upload/v1755153187/choosi_ex7eig.mp3",
       color: "from-green-100 to-teal-200",
       emoji: "🎵",
     },
@@ -72,7 +60,8 @@ const SongDedication: React.FC<SongDedicationProps> = ({ onNext }) => {
       message: "Every time you smile, I feel like the luckiest person alive ☀️",
       title: "What Makes You Beautiful",
       artist: "One Direction",
-      audioSrc: BeautifulSong,
+      audioSrc:
+        "https://res.cloudinary.com/dcnl1eovc/video/upload/v1755153091/beautiful_lwxln1.mp3",
       color: "from-yellow-100 to-orange-200",
       emoji: "😊",
     },
@@ -82,7 +71,8 @@ const SongDedication: React.FC<SongDedicationProps> = ({ onNext }) => {
       message: "Your love is the rhythm that keeps my heart beating 💓",
       title: "Jabilli Kosam",
       artist: "S. P. Balasubrahmanyam",
-      audioSrc: JabilliSong,
+      audioSrc:
+        "https://res.cloudinary.com/dcnl1eovc/video/upload/v1755153185/jabilli_n4gkre.mp3",
       color: "from-purple-100 to-violet-200",
       emoji: "💖",
     },
@@ -91,7 +81,8 @@ const SongDedication: React.FC<SongDedicationProps> = ({ onNext }) => {
       message: "Every day with you is a love song I never want to end 🎤",
       title: "Naa Kosam",
       artist: "Sid Sriram",
-      audioSrc: NaakosamSong,
+      audioSrc:
+        "https://res.cloudinary.com/dcnl1eovc/video/upload/v1755153190/naakosam_y1krrk.mp3",
       color: "from-pink-200 to-red-300",
       emoji: "🎤",
     },
@@ -100,7 +91,8 @@ const SongDedication: React.FC<SongDedicationProps> = ({ onNext }) => {
       message: "You are my music, my heartbeat, and my forever ❤️🎶",
       title: "Neeve Neeve",
       artist: "G. V. Prakash Kumar",
-      audioSrc: NeeveSong,
+      audioSrc:
+        "https://res.cloudinary.com/dcnl1eovc/video/upload/v1755153187/neeve_pc5cfy.mp3",
       color: "from-yellow-200 to-orange-300",
       emoji: "❤️",
     },
@@ -110,7 +102,8 @@ const SongDedication: React.FC<SongDedicationProps> = ({ onNext }) => {
         "This is the final note in my heart’s playlist… I can’t say more than this, you are everything 🎼💞",
       title: "Ninnu Chudagane",
       artist: "Devi Sri Prasad (DSP)",
-      audioSrc: NinnuchudaganeSong,
+      audioSrc:
+        "https://res.cloudinary.com/dcnl1eovc/video/upload/v1755153195/ninnuchudagane_lvepgx.mp3",
       color: "from-blue-200 to-indigo-300",
       emoji: "🎼",
     },
@@ -225,10 +218,8 @@ const SongDedication: React.FC<SongDedicationProps> = ({ onNext }) => {
                     {song.title || "Untitled"}
                   </div>
                   <span className="text-[0.6rem] text-gray-400 italic mt-1 text-center">
-                    (click to  
-                    
-                    {currentPlaying === song.id ? " pause" : " play"}
-                    )
+                    (click to
+                    {currentPlaying === song.id ? " pause" : " play"})
                   </span>
                 </div>
 
@@ -253,23 +244,25 @@ const SongDedication: React.FC<SongDedicationProps> = ({ onNext }) => {
               </div>
 
               {/* Now playing indicator */}
-                <div className="flex flex-col items-center justify-center mt-2 min-h-[24px]">
+              <div className="flex flex-col items-center justify-center mt-2 min-h-[24px]">
                 {currentPlaying === song.id ? (
                   <div className="text-xs text-white font-semibold flex items-center gap-1">
-                  <span role="img" aria-label="playing">🔊</span>
-                  <span>Now Playing...</span>
+                    <span role="img" aria-label="playing">
+                      🔊
+                    </span>
+                    <span>Now Playing...</span>
                   </div>
                 ) : (
                   allSongsPlayed.includes(song.id) && (
-                  <div className="flex items-center justify-center">
-                    <div className="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 shadow-sm border border-pink-200">
-                    <Heart className="w-3 h-3 fill-current" />
-                    <span>Played with love</span>
+                    <div className="flex items-center justify-center">
+                      <div className="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 shadow-sm border border-pink-200">
+                        <Heart className="w-3 h-3 fill-current" />
+                        <span>Played with love</span>
+                      </div>
                     </div>
-                  </div>
                   )
                 )}
-                </div>
+              </div>
 
               {/* Played with love badge */}
             </div>

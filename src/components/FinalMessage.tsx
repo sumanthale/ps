@@ -124,22 +124,33 @@ const messageParts = [
       {/* Action Button */}
       {currentPart >= messageParts.length - 1 && (
         <motion.div
-          className="mt-8 relative z-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.4 }}
+          className="mt-10 z-10 flex flex-col items-center"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.4 }}
         >
-          <button
+          <motion.button
             onClick={sendMessage}
-            className="bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 hover:from-pink-500 hover:via-purple-500 hover:to-blue-500 text-white px-10 py-5 rounded-full font-bold text-xl transition-transform transform hover:scale-105 flex items-center justify-center space-x-4 shadow-lg"
+            whileHover={{ scale: 1.07 }}
+            whileTap={{ scale: 0.97 }}
+            className="bg-gradient-to-r from-pink-400 to-blue-400 text-white px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 shadow border"
           >
-            <MessageCircle className="w-7 h-7" />
-            <span className="font-nunito">Send me a smile 😊</span>
-          </button>
+            <motion.span
+              animate={{ rotate: [0, -10, 10, 0] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+              className="flex items-center"
+            >
+              <MessageCircle className="w-6 h-6 mr-1" />
+            </motion.span>
+            <span>
+              Send a smile <span className="animate-bounce">😊</span>
+            </span>
+          </motion.button>
+          <span className="mt-2 text-xs text-gray-400 italic">
+            (Opens WhatsApp)
+          </span>
         </motion.div>
       )}
-
-      {/* Final Card */}
       {currentPart >= messageParts.length - 1 && (
         <motion.div
           className="mt-16 rounded-3xl p-8 border border-pink-200 shadow-lg bg-white/70 backdrop-blur-md max-w-sm text-center"
